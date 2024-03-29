@@ -54,7 +54,7 @@ public class SecurityConfig {
                 // Use authorizeHttpRequests to configure request authorization
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/h2-console/**", "/api/login").permitAll() //permit all these urls
-                        .requestMatchers("/api/admin").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/api/admin").hasRole("ADMIN")
                         .anyRequest().authenticated()) // Any other request must be authenticated
                         .addFilterBefore(jwtAuthTokenFilter(), UsernamePasswordAuthenticationFilter.class); // Add JWT filter
         return http.build();

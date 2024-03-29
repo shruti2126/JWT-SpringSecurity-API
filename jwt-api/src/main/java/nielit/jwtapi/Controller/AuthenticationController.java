@@ -48,8 +48,6 @@ public class AuthenticationController {
 				new UsernamePasswordAuthenticationToken(
 						loginRequest.getUsername(),
 						loginRequest.getPassword()));
-
-		System.out.println("authentication : " + authentication.getName() + ".........................");
 		// Setting the authentication in the security context
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -65,14 +63,14 @@ public class AuthenticationController {
 		return response;
 	}
 
-	@GetMapping("/admin")
-    public ResponseEntity<AuthorizationResponse> getProtectedResource() {
-        // Add some logic here to fetch a resource.
+	// @GetMapping("/admin")
+    // public ResponseEntity<AuthorizationResponse> getProtectedResource() {
+    //     // Add some logic here to fetch a resource.
        
-		return ResponseEntity.ok(new AuthorizationResponse(
-				SecurityContextHolder.getContext().getAuthentication().getName(),
-			"Authorized", true));
-    }
+	// 	return ResponseEntity.ok(new AuthorizationResponse(
+	// 			SecurityContextHolder.getContext().getAuthentication().getName(),
+	// 		"Authorized", true));
+    // }
 
 	@PostMapping("/register")
 	public ResponseEntity<String> register(@RequestBody UserEntity user) {

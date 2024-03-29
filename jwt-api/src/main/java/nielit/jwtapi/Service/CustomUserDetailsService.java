@@ -43,7 +43,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         return User.builder()
             .username("testUser")
             .password(passwordEncoder.encode("testPassword"))
-            .authorities("ROLE_USER")
+            .authorities("ROLEUSER")
             .build();
         
     }

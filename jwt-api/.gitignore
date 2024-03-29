@@ -1,0 +1,27 @@
+# Ignore HELP.md file
+HELP.md
+
+# Ignore target directory
+target/
+
+# Ignore .mvn/wrapper/maven-wrapper.jar file
+!.mvn/wrapper/maven-wrapper.jar
+
+# Ignore target directories in src/main and src/test directories
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Ignore STS files
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# Ignore VS Code files
+.vscode/
+
+# Ignore application.properties file
+application.properties

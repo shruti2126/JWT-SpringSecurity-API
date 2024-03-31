@@ -6,5 +6,5 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 INSERT INTO users (username, password) VALUES
-  ('user1', '$2a$12$M4ZJDIWSYAPWwCW2dgAsa.xJFT3NzdWSOiotyjK9AHclR/9UgkSya'),
-  ('user2', '$2a$12$aUndtL29bMOT48k6I.htV.7MxpopQjMFL7UfcjNBY5fSDYnnLUETa');
+  ('admin', '$2a$12$GvvW0YLvpRGGRUupi/YMhe.ueIwvMmhV/6jWXbemwNqOvOpIJ6LVS', 'ROLE_ADMIN'),
+  ('user', '$2a$12$w.pPHNnpSeP7KvStJ7f0weJdPReIfUDjMNitiOeXndgpsd6eNSA3K', 'ROLE_USER');

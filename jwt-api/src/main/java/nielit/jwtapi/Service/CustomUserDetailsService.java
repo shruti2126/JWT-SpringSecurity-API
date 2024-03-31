@@ -16,36 +16,37 @@ import nielit.jwtapi.Repository.UserRepository;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    // @Autowired
-    // private UserRepository userRepo;
+    @Autowired
+    private UserRepository userRepo;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    // UserEntity user = userRepo.findByUsername(username); 
-    // if (user == null) {
-    //     throw new UsernameNotFoundException("User not found with username: " + username);
-    // }     
-    // return new User(user.getUsername(),
-    //            user.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))); // Adjust authorities as needed
-    // }
-    // Check against a hard-coded username for testing purposes
-
-        if ("adminUser".equals(username)) {
-            return User.builder()
-                    .username("adminUser")
-                    .password( passwordEncoder.encode("adminPassword")) //In production, fetch encoded password from database
-                    .authorities("ROLE_ADMIN")
-                    .build();
-        } 
-        return User.builder()
-            .username("testUser")
-            .password(passwordEncoder.encode("testPassword"))
-            .authorities("ROLEUSER")
-            .build();
-        
+        UserEntity user = userRepo.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found with username: " + username);
+        }
+        return new User(user.getUsername(),
+                user.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))); // Adjust authorities as needed
     }
+        
+        // Check against a hard-coded username for testing purposes
+
+        //     if ("adminUser".equals(username)) {
+        //         return User.builder()
+        //                 .username("adminUser")
+        //                 .password( passwordEncoder.encode("adminPassword")) //In production, fetch encoded password from database
+        //                 .authorities("ROLE_ADMIN")
+        //                 .build();
+        //     } 
+        //     return User.builder()
+        //         .username("testUser")
+        //         .password(passwordEncoder.encode("testPassword"))
+        //         .authorities("ROLEUSER")
+        //         .build();
+            
+        // }
 }
 

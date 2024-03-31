@@ -19,9 +19,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepo;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity user = userRepo.findByUsername(username);
@@ -29,9 +26,8 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
         return new User(user.getUsername(),
-                user.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))); // Adjust authorities as needed
-    }
-        
+                user.getPassword(), Collections.singletonList(new SimpleGrantedAuthority(user.getAuthority())));
+
         // Check against a hard-coded username for testing purposes
 
         //     if ("adminUser".equals(username)) {
@@ -46,7 +42,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         //         .password(passwordEncoder.encode("testPassword"))
         //         .authorities("ROLEUSER")
         //         .build();
-            
+
         // }
+    }
+
 }
 
